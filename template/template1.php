@@ -12,7 +12,9 @@
     <title><!--TITLE--></title>
 </head>
 
-<body>
+<body class="container-fluid" >
+
+<h2><!--encabezado--></h2>
 
 </body>
 <!--SCRIPTS-->

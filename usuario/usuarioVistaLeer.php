@@ -1,6 +1,4 @@
-<body class="container-fluid" >
 
-<h2> Tabla de Usuarios</h2>
 
 <br>
 <a href="usuarioControlador.php?action=agregar"> <button class="btn btn-success">agregar Usuario</button> </a>
@@ -70,6 +68,5 @@
 
     </tbody>
 </table>
-</body>
-</html>
+
 

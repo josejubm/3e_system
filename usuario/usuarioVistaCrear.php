@@ -11,7 +11,7 @@
     <label for="domicilio">Domicilio</label>
     <input type="text" name="domicilio" id="domicilio" class="form-control">
     <label for="fecha nacimiento">Fecha de Nacimiento</label>
-    <input type="text" name="fecha_n" id="fecha_n" class="form-control">
+    <input type="date" name="fecha_n" id="fecha_n" class="form-control">
     <label for="curp">CURP</label>
     <input type="text" name="curp" id="curp" class="form-control">
     <label for="rfc">RFC</label>
