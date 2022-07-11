@@ -1,7 +1,5 @@
 <?php
-
-function CargarPagina($file = "template/template1.php "){
-
+function CargarPagina($file = "template/template.php"){
     ob_start();
     require_once ($file);
 

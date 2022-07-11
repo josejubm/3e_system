@@ -2,24 +2,21 @@
 require_once ('libraries/connection.php');
 require_once ('libraries/funciones.php');
 require_once ('usuario/usuario.php');
-//require_once ('template/template1.php');
 
+$template = CargarPagina('template/template.php');
 
-$template = CargarPagina('template/template1.php');
-
+print $template;
 switch ($_GET ["action"] ){
     case "leer":
         $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
-        $template = str_replace("<!--encabezado-->", "Tabla Usuarios", $template);
+
         include ('usuario/usuarioVistaLeer.php');
         break;
 
     case "agregar":
         $template = str_replace("<!--TITLE-->", "crear usuario", $template);
-        $template = str_replace("<!--encabezado-->", "Crear Usuarios", $template);
 
         include ('usuario/usuarioVistaCrear.php');
-
         break;
     case "registrar":
         $nombre = $_POST['nombre'];
@@ -78,4 +75,9 @@ switch ($_GET ["action"] ){
         break;
 }
 
-print $template;
+
+
+
+
+$footer = CargarPagina('template/footer.php');
+print $footer;

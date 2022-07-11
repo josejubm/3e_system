@@ -1,5 +1,3 @@
-<body class="container-fluid">
-
 <form action="usuarioControlador.php?action=registrar" method="post" class="container">
 
     <label for="nombre">Nombre</label>
@@ -26,6 +24,3 @@
     <input type="submit" value="enviar datos" class="btn btn-success ">
 
 </form>
-
-</body>
-</html>
