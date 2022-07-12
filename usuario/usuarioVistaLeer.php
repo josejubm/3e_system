@@ -35,28 +35,27 @@
     for ($i=0;$i<$numeroFilas;$i++)
     {
         $id=$resultado[$i]["id"];
-        $nombre=$resultado[$i]["nombre"];
-        $matricula=$resultado[$i]["matricula"];
-        $contraseña=$resultado[$i]["password"];
+        $nombre=$resultado[$i]["nombreCompleto"];
+        $user=$resultado[$i]["usuario"];
+        $contraseña=$resultado[$i]["contrasena"];
         $domicilio=$resultado[$i]["domicilio"];
-        $fecha_n=$resultado[$i]["fecha_nacimiento"];
-        $curp=$resultado[$i]["curp"];
-        $rfc=$resultado[$i]["rfc"];
-        $estado_c=$resultado[$i]["estado_civil"];
-        $foto=$resultado[$i]["foto"];
+        $correoElectronico=$resultado[$i]["correoElectronico"];
+        $intento=$resultado[$i]["intento"];
+        $lastLogin=$resultado[$i]["lastLogin"];
+        $activo=$resultado[$i]["activo"];
+        
 
 
         print "<tr>
     <td>$id</td>
     <td>$nombre</td>
-    <td>$matricula</td>
+    <td>$user</td>
     <td>$contraseña</td>
     <td>$domicilio </td>
-    <td>$fecha_n </td>
-    <td>$curp </td>
-    <td>$rfc</td>
-    <td>$estado_c</td>
-    <td>$foto </td>
+    <td>$correoElectronico </td>
+    <td>$intento </td>
+    <td>$lastLogin  </td>
+    <td>$activo </td>
 
     <td> <a href='usuarioControlador.php?action=actualizar&id=$id'> <button class='btn btn-warning'> actualizar </button> </a> </td>
 
