@@ -4,8 +4,17 @@ require_once ('libraries/funciones.php');
 require_once ('usuario/usuario.php');
 
 $template = CargarPagina('template/template.php');
+$sidebar = CargarPagina('template/TemplateSidebar.php');
+$breadcrumb = CargarPagina('template/TemplateBreadcrumb.php');
+$header = CargarPagina('template/TemplateHeader.php');
 
 print $template;
+print $sidebar;
+print $header;
+print $breadcrumb;
+
+
+
 switch ($_GET ["action"] ){
     case "leer":
         $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
@@ -33,7 +42,9 @@ switch ($_GET ["action"] ){
                   VALUES ('$nombre', '$matricula', '$contraseña', '$domicilio', '$fecha_n', '$curp', '$rfc', '$esatdo_c', '$foto');";
         $insertar=$connection->query($query);
 
-        header('Location: usuarioControlador.php?action=leer');
+       // header('Location:usuarioControlador.php?action=leer');
+       
+       include ('usuario/usuarioVistaLeer.php');
 
         break;  
     case "actualizar":
@@ -67,8 +78,7 @@ switch ($_GET ["action"] ){
         $query = "DELETE FROM usuario WHERE id = $id";
         $eliminar=$connection->query($query);
 
-        header('Location: usuarioControlador.php?action=leer');
-
+        include ('usuario/usuarioVistaLeer.php');
         break;
     default:
         print "No se detecto variable";
@@ -76,8 +86,5 @@ switch ($_GET ["action"] ){
 }
 
 
-
-
-
-$footer = CargarPagina('template/footer.php');
+$footer = CargarPagina('template/TemplateFooter.php');
 print $footer;
