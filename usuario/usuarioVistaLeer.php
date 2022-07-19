@@ -10,16 +10,13 @@
 
         <th scope="row">id</th>
 
-        <th>nombre</th>
-        <th>matricula </th>
-        <th>password</th>
-        <th>domicilio</th>
-        <th>fecha de nacimiento</th>
-        <th>CURP</th>
-        <th>RFC</th>
-        <th>estado Civil</th>
-        <th>Direccion de imagen</th>
-
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Contraseña</th>
+        <th>Correo Electronico</th>
+        <th>Intento </th>
+        <th>Last Login  </th>
+        <th>activo</th>
         <th>     </th>
         <th>     </th>
     </tr>
@@ -51,7 +48,6 @@
     <td>$nombre</td>
     <td>$user</td>
     <td>$contraseña</td>
-    <td>$domicilio </td>
     <td>$correoElectronico </td>
     <td>$intento </td>
     <td>$lastLogin  </td>

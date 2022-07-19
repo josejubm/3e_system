@@ -3,7 +3,7 @@ require_once ('libraries/connection.php');
 require_once ('libraries/funciones.php');
 require_once ('usuario/usuario.php');
 
-$template = CargarPagina('template/template.php');
+$template = CargarPagina('template/template1.php');
 $sidebar = CargarPagina('template/TemplateSidebar.php');
 $breadcrumb = CargarPagina('template/TemplateBreadcrumb.php');
 $header = CargarPagina('template/TemplateHeader.php');
@@ -12,7 +12,6 @@ print $template;
 print $sidebar;
 print $header;
 print $breadcrumb;
-
 
 
 switch ($_GET ["action"] ){

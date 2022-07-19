@@ -4,5 +4,5 @@ function CargarPagina($file = "template/template.php"){
     require_once ($file);
 
     $template_string=ob_get_clean();
-    return$template_string;
+    return $template_string;
 }

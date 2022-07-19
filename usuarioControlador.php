@@ -3,43 +3,29 @@ require_once ('libraries/connection.php');
 require_once ('libraries/funciones.php');
 require_once ('usuario/usuario.php');
 
-$template = CargarPagina('template/template.php');
-$sidebar = CargarPagina('template/TemplateSidebar.php');
-$breadcrumb = CargarPagina('template/TemplateBreadcrumb.php');
-$header = CargarPagina('template/TemplateHeader.php');
-
-print $template;
-print $sidebar;
-print $header;
-print $breadcrumb;
-
-
-
 switch ($_GET ["action"] ){
     case "leer":
         $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
 
-        include ('usuario/usuarioVistaLeer.php');
+        $body = 'usuario/usuarioVistaLeer.php';
         break;
 
     case "agregar":
         $template = str_replace("<!--TITLE-->", "crear usuario", $template);
 
-        include ('usuario/usuarioVistaCrear.php');
+        $body = 'usuario/usuarioVistaCrear.php';
         break;
     case "registrar":
         $nombre = $_POST['nombre'];
-        $matricula = $_POST['matricula'];
-        $contraseña = $_POST['contraseña'];
-        $domicilio = $_POST['domicilio'];
-        $fecha_n = $_POST['fecha_n'];
-        $curp = $_POST['curp'];
-        $rfc = $_POST['rfc'];
-        $esatdo_c = $_POST['estado_c'];
-        $foto = $_POST['foto'];
+        $usuario = $_POST['usuario'];
+        $contrasena = $_POST['contrasena'];
+        $correo = $_POST['correo'];
+        $intento = $_POST['intento'];
+        $lastLogin = $_POST['lastLogin'];
+        $activo = $_POST['activo'];
 
-        $query = "INSERT INTO usuario (nombre, matricula, password, domicilio, fecha_nacimiento, curp, rfc, estado_civil, foto) 
-                  VALUES ('$nombre', '$matricula', '$contraseña', '$domicilio', '$fecha_n', '$curp', '$rfc', '$esatdo_c', '$foto');";
+        $query = "INSERT INTO usuario (nombreCompleto, usuario, contrasena, correoElectronico, intento, lastLogin, activo) 
+                  VALUES ('$nombre','$usuario','$contrasena','$correo','$intento','$lastLogin','$activo');";
         $insertar=$connection->query($query);
 
        // header('Location:usuarioControlador.php?action=leer');
@@ -56,16 +42,14 @@ switch ($_GET ["action"] ){
       
       $id = $_POST['id'];
       $nombre = $_POST['nombre'];
-      $matricula = $_POST['matricula'];
-      $contraseña = $_POST['contraseña'];
-      $domicilio = $_POST['domicilio'];
-      $fecha_n = $_POST['fecha_n'];
-      $curp = $_POST['curp'];
-      $rfc = $_POST['rfc'];
-      $esatdo_c = $_POST['estado_c'];
-      $foto = $_POST['foto'];
+      $usuario = $_POST['usuario'];
+      $contrasena = $_POST['contrasena'];
+      $correo = $_POST['correo'];
+      $intento = $_POST['intento'];
+      $lastLogin = $_POST['lastLogin'];
+      $activo = $_POST['activo'];
 
-      $query = "UPDATE usuario SET nombre = '$nombre', matricula = '$matricula', password = '$contraseña' , domicilio = '$domicilio', fecha_nacimiento = '$fecha_n', curp = '$curp', rfc = '$rfc' , estado_civil = '$esatdo_c' , foto = '$foto' WHERE id = $id;";
+      $query = "UPDATE usuario SET nombreCompleto = '$nombre', usuario = '$usuario', contrasena = '$contrasena' , correoElectronico = '$correo', intento = '$intento', lastLogin = '$lastLogin', activo = '$activo' WHERE id = $id;";
         
       $update=$connection->query($query);
 
@@ -85,6 +69,42 @@ switch ($_GET ["action"] ){
         break;
 }
 
-
+$styles = CargarPagina('template/TemplateStyles.php');
+$myStyles = "";
+$sidebar = CargarPagina('template/TemplateSidebar.php');
+$breadcrumb = CargarPagina('template/TemplateBreadcrumb.php');
+$header = CargarPagina('template/TemplateHeader.php');
 $footer = CargarPagina('template/TemplateFooter.php');
-print $footer;
+$scripts = CargarPagina('template/TemplateScripts.php');
+$myScripts = "";
+
+$template = CargarPagina('template/Template.php');
+
+$Search = [
+  '<!--STYLES-->',
+  '<!--MY STYLES-->',
+  '<!--SIDEBAR-->',
+  '<!--HEADER-->',
+  '<!--BREADCRUMB-->',
+  '<!--BODY--> ',
+  '<!--FOOTER-->',
+'<!--SCRIPT-->',
+'<!--MY SCRIPTS-->'
+];
+
+$Replace = [
+    $styles,
+    $myStyles,
+    $sidebar,
+    $header,
+    $breadcrumb,
+    $footer,
+    $scripts,
+    $myScripts
+];
+
+$template = str_replace($Search, $Replace, $template);
+
+
+print $template;
+require_once ($body);
