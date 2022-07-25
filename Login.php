@@ -1,11 +1,10 @@
 <?php
 require_once ('libraries/connection.php');
 require_once ('libraries/funciones.php');
-require_once ('usuario/usuario.php');
+require_once ('Auth/Auth.php');
 
 $head = CargarPagina('template/HeadLogin.php');
 print $head;
-
 
 ?>
 
@@ -22,21 +21,21 @@ print $head;
     <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-                <form>
+                <form  method="POST" href='Auth.php?action=login'>
                     <div class="login-form-head">
                         <h4>Sign In</h4>
                         <p>Hello there, Sign in and start managing your Admin Template</p>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="exampleInputEmail1">
+                            <label for="exampleInputEmail1">User</label>
+                            <input type="text" id="user">
                             <i class="ti-email"></i>
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" id="exampleInputPassword1">
+                            <input type="password" id="password">
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                         </div>
@@ -53,14 +52,6 @@ print $head;
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
-                            <div class="login-other row mt-4">
-                                <div class="col-6">
-                                    <a class="fb-login" href="#">Log in with <i class="fa fa-facebook"></i></a>
-                                </div>
-                                <div class="col-6">
-                                    <a class="google-login" href="#">Log in with <i class="fa fa-google"></i></a>
-                                </div>
-                            </div>
                         </div>
                         <div class="form-footer text-center mt-5">
                             <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
