@@ -19,3 +19,6 @@
     <link rel="stylesheet" href="assets/srtdash/assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/srtdash/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- custom Styles -->
+    <link rel="stylesheet" href="assets/css/mycss.css">

@@ -10,31 +10,33 @@
                 </ul>
             </div>
         </div>
+
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="../assets/srtdash/assets/images/author/avatar.png" alt="avatar">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
+                <img class="avatar user-thumb" src="<?php if ($_COOKIE["FOTO"] == "") {
+                                                        print "imagesUser/3Emexico.png";
+                                                    } else {
+                                                        print  $_COOKIE["FOTO"];
+                                                    }
+                                                    ?>" alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown"> <?php print $_COOKIE["USER"]; ?> <i class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Message</a>
                     <a class="dropdown-item" href="#">Settings</a>
+
                     <a class="dropdown-item" href="#">Log Out</a>
+
+                    <form action="Auth.php" method="POST">
+                        <input type="hidden" name="action" id="action" value="logout">
+                        <input type="hidden" name="salir" id="salir" value="salir">
+                        <button type="submit" class="dropdown-item"> salir </button>
+                    </form>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 <!-- page title area end -->
 
 <div class="main-content-inner">
-
-    <?php if (isset($alert["flash"])) : ?>
-
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= $alert["flash"]["message"] ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span class="fa fa-times"></span>
-            </button>
-        </div>
-        <?php unset($alert["flash"]) ?>
-
-    <?php endif ?>

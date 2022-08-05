@@ -1,4 +1,5 @@
 <?php
+require_once('libraries/Auth/Security.php');
 require_once('libraries/connection.php');
 require_once('libraries/funciones.php');
 require_once('usuario/usuario.php');
@@ -34,10 +35,14 @@ $template = str_replace($Search, $Replace, $template);
 print $template;
 
 switch ($_GET["action"]) {
-    case "leer":
-        $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
-        
+    case "leer";
         include('usuario/usuarioVistaLeer.php');
+
+        break;
+    case "table":
+        $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
+
+        include('usuario/usuarioVistaTable.php');
         break;
     case "agregar":
         $template = str_replace("<!--TITLE-->", "Crear Usuario", $template);
@@ -47,13 +52,17 @@ switch ($_GET["action"]) {
         $nombre = $_POST['nombre'];
         $usuario = $_POST['usuario'];
         $correo = $_POST['email'];
-        $contrasena = $_POST['password'];
-        $intento = $_POST['intento'];
-        $lastLogin = $_POST['lastLogin'];
+        $contrasena = password_hash($_POST["password"], PASSWORD_BCRYPT);
+        $fechaRegistro = $_POST['lastLogin'];
         $activo = $_POST['activo'];
+        $tipo = $_POST['tipo'];
 
-        $query = "INSERT INTO usuario (nombreCompleto, usuario, contrasena, correoElectronico, intento, lastLogin, activo) 
-                  VALUES ('$nombre', '$usuario', '$contrasena', '$correo', '$intento', '$lastLogin', '$activo');";
+        $ruta = "imagesUser/";
+        $resultado = CargarImgen($_FILES['foto'], $ruta);
+        $imagen = $resultado['RUTA'];
+
+        $query = "INSERT INTO usuario (nombreCompleto, usuario, contrasena, correoElectronico, fechaRegistro, activo, tipo, foto) 
+                  VALUES ('$nombre', '$usuario', '$contrasena', '$correo', '$fechaRegistro', '$activo', '$tipo', '$imagen');";
         $insertar = $connection->query($query);
 
         $alert["flash"] = ["message" => "Usuario {$nombre} Agregado.", "type" => "alert-success"];
@@ -71,10 +80,10 @@ switch ($_GET["action"]) {
         $correo = $_POST['email'];
         $contrasena = $_POST['password'];
         $intento = $_POST['intento'];
-        $lastLogin = $_POST['lastLogin'];
+        $fechaRegistro = $_POST['fechaRegistro'];
         $activo = $_POST['activo'];
 
-        $query = "UPDATE usuario SET nombreCompleto = '$nombre', usuario = '$usuario', contrasena = '$contrasena' , correoElectronico = '$correo', intento = '$intento', lastLogin = '$lastLogin', activo = '$activo' WHERE id = $id;";
+        $query = "UPDATE usuario SET nombreCompleto = '$nombre', usuario = '$usuario', contrasena = '$contrasena' , correoElectronico = '$correo', intento = '$intento', fechaRegistro = '$fechaRegistro', activo = '$activo' WHERE id = $id;";
         $update = $connection->query($query);
 
         $alert["flash"] = ["message" => "Usuario {$nombre} Actualizado.", "type" => "alert-warning"];

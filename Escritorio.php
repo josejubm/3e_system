@@ -1,38 +1,58 @@
+<?php
+require_once ('libraries/Auth/Security.php');
+require_once('libraries/connection.php');
+require_once('libraries/funciones.php');
+require_once('usuario/usuario.php');
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>principal</title>
+$styles = CargarPagina('template/TemplateStyles.php');
+$myStyles = "";
+$sidebar = CargarPagina('template/TemplateSidebar.php');
+$breadcrumb = CargarPagina('template/TemplateBreadcrumb.php');
+$header = CargarPagina('template/TemplateHeader.php');
+$footer = CargarPagina('template/TemplateFooter.php');
+$scripts = CargarPagina('template/TemplateScripts.php');
+$myScripts = "";
+$template = CargarPagina('template/Template.php');
+$template1 = CargarPagina('template/Template1.php');
+$Search = [
+    '<!--STYLES-->',
+    '<!--MY STYLES-->',
+    '<!--SIDEBAR-->',
+    '<!--HEADER-->',
+    '<!--BREADCRUMB-->',
+];
 
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
+$Replace = [
+    $styles,
+    $myStyles,
+    $sidebar,
+    $header,
+    $breadcrumb,
+];
 
-</head>
-<body>
+$template = str_replace($Search, $Replace, $template);
+print $template;
 
-<div class="container">
-    <div class="container"> <h1 > CRUD Usuarios </h1></div>
+switch ($_GET["action"]) {
+    case "leer":
+    
+    break;
+    default:
+        print "No se detecto variable";
+        break;
+}
 
-    <br>
-    <br>
+$Search2 = [
+    '<!--FOOTER-->',
+    '<!--SCRIPT-->',
+    '<!--MY SCRIPTS-->'
+];
 
-    <div class="container overflow-hidden">
+$Replace2 = [
+    $footer,
+    $scripts,
+    $myScripts
+];
 
-        <div class="row gy-5">
-            <div class="col-6">
-                <div class="p-3 border bg-light"> <a href="usuarioControlador.php?action=leer" class="btn btn-primary">  Usuarios </a> </div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 border bg-light"><a href="usuarioControlador.php?action=agregar" class="btn btn-primary">  Registrar Usuarios </a> </div>
-            </div>
-           
-        </div>
-    </div>
-
-</div>
-
-</body>
-</html> 
+$template1 = str_replace($Search2, $Replace2, $template1);
+print $template1;
