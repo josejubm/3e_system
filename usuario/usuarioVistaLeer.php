@@ -61,8 +61,8 @@
                 <h6 class="card-text"> <?php print $usuario['usuario']; ?></h6>
 
               </div>
-              <div class="card-footer " style="background: inherit; border-color: inherit; ">
-
+              <!-- <div class="card-footer" style="background: inherit; border-color: inherit;"> -->
+              <div class="card-footer">
                 <?php if ($_COOKIE['USER'] == $usuario['usuario'] || $_COOKIE['TIPO'] == "ADMINISTRADOR") { ?>
 
                   <a href="#" class="btn btn-outline-warning ti-file "> Reporte </a>

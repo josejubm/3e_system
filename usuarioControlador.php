@@ -13,13 +13,14 @@ $footer = CargarPagina('template/TemplateFooter.php');
 $scripts = CargarPagina('template/TemplateScripts.php');
 $myScripts = "";
 $template = CargarPagina('template/Template.php');
+$templatebread = CargarPagina('template/TemplateBread.php');
 $template1 = CargarPagina('template/Template1.php');
+
 $Search = [
     '<!--STYLES-->',
     '<!--MY STYLES-->',
     '<!--SIDEBAR-->',
     '<!--HEADER-->',
-    '<!--BREADCRUMB-->',
 ];
 
 $Replace = [
@@ -27,17 +28,23 @@ $Replace = [
     $myStyles,
     $sidebar,
     $header,
-    $breadcrumb,
 ];
 
 $template = str_replace($Search, $Replace, $template);
-
 print $template;
 
 switch ($_GET["action"]) {
     case "leer";
-        include('usuario/usuarioVistaLeer.php');
+        $pages = [
+            "DATO" => "Usuarios",
+        ];
 
+        $bread = str_replace('<!--BREADCRUMB-->', $breadcrumb, $templatebread);
+        print $bread;
+
+        print_r($pages);
+
+        include('usuario/usuarioVistaLeer.php');
         break;
     case "table":
         $template = str_replace("<!--TITLE-->", "Tabla Usuarios", $template);
@@ -98,6 +105,39 @@ switch ($_GET["action"]) {
 
         $alert["flash"] = ["message" => "Usuario {$nombre} Eliminado .", "type" => "alert-danger"];
         include('usuario/usuarioVistaLeer.php');
+        break;
+
+    case "reporte":
+        $resultado = $connection->query('SELECT * FROM usuario');
+        $resultado = $resultado->fetch_all(MYSQLI_ASSOC);
+
+       
+        for ($i=0; $i < 10 ; $i++) { 
+            $td .= 11;
+        }
+
+        $table = "<table>
+        $td
+        </table>";
+
+        $datos = [];
+        $datos[0] = '<h5> jose manuel </h5>';
+        $datos[1] = '<h5> carlos </h5>';
+
+       
+
+        //print_r($datos);
+
+        $etiqueta = [
+            '<!--##TABLE##-->'
+        ];
+        
+        //$template = $template = CargarPagina('TemplateReporte.html');
+        $dir = "reportes/";
+        $name = "users";
+
+        $resultado = generaReporte($resultado, $etiqueta, $template, $dir, $name);
+
         break;
     default:
         print "No se detecto variable";
